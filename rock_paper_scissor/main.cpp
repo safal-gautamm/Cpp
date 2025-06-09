@@ -5,6 +5,12 @@
 #define True 1
 using namespace std;
 
+string to_lower(string str)
+{
+    for (char &c : str)
+        c = tolower(c);
+    return str;
+}
 
 string get_computer_choice()
 {
@@ -25,7 +31,7 @@ string get_computer_choice()
 string get_user_input()
 {
     string users;
-    cout << "Choose [Rock, Paper, Scissors, exit]: ";
+    cout << "\nChoose [Rock, Paper, Scissors, exit]: ";
     cin >> users;
 
     users = to_lower(users);
@@ -44,12 +50,6 @@ string get_user_input()
     }
 }
 
-string to_lower(string str)
-{
-    for (char &c : str)
-        c = tolower(c);
-    return str;
-}
 
 int main()
 {
