@@ -31,22 +31,26 @@ string get_computer_choice()
 string get_user_input()
 {
     string users;
-    cout << "\nChoose [Rock, Paper, Scissors, exit]: ";
-    cin >> users;
+    while (True)
+    {
+        cout << "\nChoose [Rock, Paper, Scissors, exit]: ";
+        cin >> users;
+    
+        users = to_lower(users);
+    
+        if (users == "rock" || users == "r")
+            return "rock";
+        else if (users == "paper" || users == "p")
+            return "paper";
+        else if (users == "scissors" || users == "s")
+            return "scissors";
+        else if (users == "exit" || users == "e")
+            return "exit";
+        else {
+            cout << "Invalid input! Try again.\n";
+            return get_user_input();
+        }
 
-    users = to_lower(users);
-
-    if (users == "rock" || users == "r")
-        return "rock";
-    else if (users == "paper" || users == "p")
-        return "paper";
-    else if (users == "scissors" || users == "s")
-        return "scissors";
-    else if (users == "exit" || users == "e")
-        return "exit";
-    else {
-        cout << "Invalid input! Try again.\n";
-        return get_user_input();
     }
 }
 
