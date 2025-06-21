@@ -20,11 +20,7 @@ private:
 public:
     int score;
     bool result;
-    Game()
-    {
-        score = 0;
-        result = true;
-    }
+    Game() : score(0), result(true){}
     void get_computer_choice()
     {
         int random_num = rand() % 3;
