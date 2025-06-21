@@ -3,15 +3,23 @@
 #include <cctype>
 using namespace std;
 
+void toLower(string *str)
+{
+    for (char &ch : *str)
+    {
+        ch = tolower(ch);
+    }
+}
+
 class Game
 {
 private:
     string user_choice;
     string computer_choice;
-    bool result;
 
 public:
     int score;
+    bool result;
     Game()
     {
         score = 0;
@@ -19,7 +27,6 @@ public:
     }
     void get_computer_choice()
     {
-        srand(time(NULL));
         int random_num = rand() % 3;
         switch (random_num)
         {
@@ -77,10 +84,15 @@ public:
         }
     }
 };
-void toLower(string *str)
+int main()
 {
-    for (char &ch : *str)
+    srand(time(NULL));
+    Game game;
+    while(game.result)
     {
-        ch = tolower(ch);
+        game.get_computer_choice();
+        game.get_user_choice();
+        game.get_user_choice();
     }
+
 }
