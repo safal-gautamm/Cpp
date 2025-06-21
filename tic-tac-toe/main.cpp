@@ -1,17 +1,9 @@
 #include <iostream>
 using namespace std;
 
-class Game
-{
-    public:
-        string name;
-
-    Game(string name): name(name){}
-};
-
 class Board
 {
-    public:
+public:
     string board[9] = {"   ", "   ", "   ", "   ", "   ", "   ", "   ", "   ", "   "};
 
     void print_board()
@@ -24,16 +16,56 @@ class Board
     }
 };
 
+class Player
+{
+public:
+    string name;
+    char type;
+
+    void set_details(char type)
+    {
+        string name;
+        if ('x' == tolower(type)){
+            cout << "Enter the name of Player 'X' : " ;
+            getline(cin, name);
+            this->name = name;
+            this->type = 'X';
+        }
+        else{
+            cout << "Enter the name of Player 'O' : " ;
+            getline(cin, name);
+            this->name = name;
+            this->type = 'O';
+        }
+    }
+
+    void view_details()
+    {
+        cout << this->name << " is assigned with : " << this->type <<endl;
+    }
+};
+
+class Game
+{
+    public:
+        Player player1;
+        Player player2;
+        Board board;
+        Player* curr_player;
+    Game()
+    {
+        player1.set_details('X');
+        player1.set_details('O');
+        curr_player = &player1;
+    }
+    void play()
+    {
+        int posiion;
+
+    }
+};
 int main()
 {
-    // string name1, name2;
-    // cout << "Enter the name of Player 1: ";
-    // cin >> name1;
-    // cout << "Enter the name of Player 2: ";
-    // cin >> name2;
-
-    // Game player1(name1);
-    // Game player2(name2);
-    Board board;
-    board.print_board();
+    Game game;
+    game.play();
 }
