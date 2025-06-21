@@ -1,25 +1,39 @@
 #include <iostream>
+#include <cctype>
 using namespace std;
+
+void capitalize(string& str)
+{
+    str[0] = toupper(str[0]);
+    for(int i = 1; i< str.length(); i++)
+    {
+        if(str[i-1] == ' '){
+            str[i] = toupper(str[i]);
+        }
+    }
+}
 
 class Board
 {
 public:
-    string board[9] = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
+    int count = 0;
+    char board[9] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
 
     void print_board()
     {
         cout << endl;
-        cout << board[0] << "|" << board[1] << "|" << board[2] << endl;
-        cout << "-------" << endl;
-        cout << board[3] << "|" << board[4] << "|" << board[5] << endl;
-        cout << "-------" << endl;
-        cout << board[6] << "|" << board[7] << "|" << board[8] << endl;
+        cout << "\t" << board[0] << "|" << board[1] << "|" << board[2] << endl;
+        cout << "\t" << "------" << endl;
+        cout << "\t" << board[3] << "|" << board[4] << "|" << board[5] << endl;
+        cout << "\t" << "------" << endl;
+        cout << "\t" << board[6] << "|" << board[7] << "|" << board[8] << endl;
     }
     bool update_board(int position, char type)
     {
-        if (board[position - 1] == " ")
+        if (board[position - 1] == ' ')
         {
             board[position - 1] = type;
+            count++;
             return true;
         }
         else
@@ -27,6 +41,28 @@ public:
             cout << "Position already taken.." << endl;
             return false;
         }
+    }
+    bool check_draw()
+    {
+        return (count == 9);
+    }
+
+    bool check_winner(char type)
+    {
+        return (
+            // Rows
+            (board[0] == type && board[1] == type && board[2] == type) ||
+            (board[3] == type && board[4] == type && board[5] == type) ||
+            (board[6] == type && board[7] == type && board[8] == type) ||
+
+            // Columns
+            (board[0] == type && board[3] == type && board[6] == type) ||
+            (board[1] == type && board[4] == type && board[7] == type) ||
+            (board[2] == type && board[5] == type && board[8] == type) ||
+
+            // Diagonals
+            (board[0] == type && board[4] == type && board[8] == type) ||
+            (board[2] == type && board[4] == type && board[6] == type));
     }
 };
 
@@ -43,6 +79,7 @@ public:
         {
             cout << "Enter the name of Player 'X' : ";
             getline(cin, name);
+            capitalize(name);
             this->name = name;
             this->type = 'X';
         }
@@ -50,6 +87,7 @@ public:
         {
             cout << "Enter the name of Player 'O' : ";
             getline(cin, name);
+            capitalize(name);
             this->name = name;
             this->type = 'O';
         }
@@ -87,6 +125,16 @@ public:
             if (update)
             {
                 board.print_board();
+                if (board.check_draw())
+                {
+                    cout << "\nIt's a draw..." << endl;
+                    break;
+                }
+                if (board.check_winner(curr_player->type))
+                {
+                    cout << "\nCongratulations " << curr_player->name << " for winning...." << endl;
+                    break;
+                }
 
                 if (curr_player == &player1)
                     curr_player = &player2;

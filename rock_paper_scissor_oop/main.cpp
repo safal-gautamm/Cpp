@@ -22,7 +22,7 @@ public:
     bool result;
 
     Game() : score(0), result(true){}
-    
+
     void get_computer_choice()
     {
         int random_num = rand() % 3;
@@ -99,4 +99,5 @@ int main()
         game.get_computer_choice();
         game.check_result();
     }
+    return 0;
 }
