@@ -43,11 +43,27 @@ class Time
     {
         cout << ((hour > 9)? "":"0") << hour << ":" << ((minute > 9)? "":"0") << minute << ":" << ((second > 9)? "":"0") << second << endl;
     }
+     Time addTime(Time t2)
+    {
+        Time result;
+        result.hour = hour + t2.hour;
+        result.minute = minute + t2.minute;
+        result.second = second + t2.second;
+        result.normalize();
+        return result;
+    }
 };
 
 int main()
 {
     Time t1(12, 0, 12000);
     t1.display12();
-    t1.display24();
+
+    Time t2(0, 0, 8653999);
+    t2.display24();
+
+    Time t3;
+    t3 = t1.addTime(t2);
+    t3.display12();
+    t3.display24();
 }
