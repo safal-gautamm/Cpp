@@ -5,6 +5,25 @@
 //     std::cout << "Hello " << argv[0] << std::endl;
 // }
 
+class Student
+{
+    private:
+    std::string name;
+    double marks;
+
+    public:
+    void setData(std::string name, double marks)
+    {
+        this->name = name;
+        this->marks = marks;
+    }
+ 
+    void display()
+    {
+        std::cout << "Name: " << name << "\nMarks: " << marks << std::endl;
+    }
+};
+
 int main()
 {
     // std::cout << "Hello world !!!" << std::endl;
@@ -27,11 +46,16 @@ int main()
     // i++;
     // main();
 
-    int num;
-    std::cin >> num;
-    bool isEven = num % 2 == 0;
-    if (isEven)
-        std::cout << "Even";
-    else
-        std::cout << "odd";
+    // int num;
+    // std::cin >> num;
+    // bool isEven = num % 2 == 0;
+    // if (isEven)
+    //     std::cout << "Even";
+    // else
+    //     std::cout << "odd";
+
+    Student s;
+    s.setData("Safal Gautam", 99.05);
+    s.display();
+    return 0;
 }
