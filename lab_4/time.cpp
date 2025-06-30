@@ -66,4 +66,6 @@ int main()
     t3 = t1.addTime(t2);
     t3.display12();
     t3.display24();
+
+    return 0;
 }
