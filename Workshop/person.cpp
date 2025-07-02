@@ -1,16 +1,16 @@
 #include <iostream>
-
+using std::cout, std::string, std::endl;
 class Person
 {
-    std::string name;
+    string name;
     double net_worth;
 
     public:
-    Person(std::string name, double n_w):name(name), net_worth(n_w){std::cout << name << " obj creaed" << std::endl;}
+    Person(string name, double n_w):name(name), net_worth(n_w){cout << name << " obj created" << endl;}
 
     ~Person()
     {
-        std::cout << name << " obj destructed" << std::endl;
+        cout << name << " obj destructed" << endl;
     }
 };
 
