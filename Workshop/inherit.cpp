@@ -1,31 +1,33 @@
 #include <iostream>
 
-class Vehicle
+class Shape
 {
     public:
-    virtual void start() = 0;
+    virtual void area() = 0;
 };
-class Car: public Vehicle
+class Circle: public Shape
 {
     public:
-    void start() override
+    void area() override
     {
-        std::cout <<"Deisel engine starts" << std::endl;
+        std::cout <<"Area of Circle" << std::endl;
     }
 };
-class Bike: public Vehicle
+class Rect: public Shape
 {
     public:
-    void start() override
+    void area() override
     {
-        std::cout <<"Petrol engine starts" << std::endl;
+        std::cout <<"Area of rectangle" << std::endl;
     }
 };
 
 int main()
 {
-    Car c1;
-    c1.start();
-    Bike b1;
-    b1.start();
+    Circle c1;
+    Rect r1;
+    Shape* s = &c1;
+    s->area();
+    s = &r1;
+    s->area();
 }
